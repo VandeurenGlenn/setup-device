@@ -4,7 +4,8 @@
   "description": "setup device for the reeflight application",
   "main": "dist/index.js",
   "scripts": {
- 	"install": ". ./install.sh"
+ 	  "install": ". ./install.sh",
+ 	  "test": "node ./test/index.js"
   },
   "repository": "https://github.com/reeflight/reeflight-setup",
   "author": "Andrew Vanardennen <andrew.vanardennen@gmail.com>",

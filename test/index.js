@@ -1,6 +1,5 @@
-const reeflightSetup = require('./../dist/index-node.js');
-const setup =reeflightSetup();
+var reeflightSetup = require('./../dist/index-node.js');
 
-if (setup === null ) {
+if (reeflightSetup === null ) {
   return 0;
 }
