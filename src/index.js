@@ -1,6 +1,5 @@
 'use strict';
 import {writeFile} from 'fs';
-import {spawn} from 'child_process';
 
 const configFile = () => {
   const uid = () => {
@@ -19,14 +18,10 @@ const configFile = () => {
   };
   
   writeFile('./../org.reeflight.config.json', JSON.stringify(config, null, 2), err => {
-    console.log(err);
+    return err;
   });
 };
 
-const nodeUpdate = () => {
-  
-};
+return configFile();
 
-configFile();
-nodeUpdate();
 
