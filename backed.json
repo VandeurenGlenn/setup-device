@@ -1,0 +1,7 @@
+{
+  "bundles": [{
+    "src": "src/index.js",
+    "dest": "dist/index.js",
+    "format": ["cjs"]
+  }]
+}

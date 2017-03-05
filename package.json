@@ -1,0 +1,12 @@
+{
+  "name": "reeflight-setup",
+  "version": "0.0.1",
+  "description": "setup device for the reeflight application",
+  "main": "dist/index.js",
+  "scripts": {
+ 	"install": ". ./install.sh"
+  },
+  "repository": "https://github.com/reeflight/reeflight-setup",
+  "author": "Andrew Vanardennen <andrew.vanardennen@gmail.com>",
+  "license": "CC-BY-NC-ND-4.0"
+}
