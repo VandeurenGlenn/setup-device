@@ -1,13 +1,24 @@
 {
-  "name": "reeflight-setup",
+  "name": "setup-device",
   "version": "0.0.1",
-  "description": "setup device for the reeflight application",
-  "main": "dist/index.js",
+  "description": "setup device",
+  "main": "index.js",
+  "module": "src/index.js",
   "scripts": {
- 	  "install": ". ./install.sh",
- 	  "test": "node ./test/index.js"
+    "compile": "rollup -c",
+    "c": "npm run compile",
+    "test": "node ./test/index.js"
   },
-  "repository": "https://github.com/reeflight/reeflight-setup",
-  "author": "Andrew Vanardennen <andrew.vanardennen@gmail.com>",
-  "license": "CC-BY-NC-ND-4.0"
+  "repository": "https://github.com/vandeurenglenn/setup-device",
+  "author": "Glenn Vandeuren <vandeurenglenn@gmail.com>",
+  "contributors": [
+    "Andrew Vanardennen <andrew.vanardennen@gmail.com>"
+  ],
+  "license": "CC-BY-NC-ND-4.0",
+  "devDependencies": {
+    "rollup": "^1.4.1"
+  },
+  "dependencies": {
+    "uuid": "^3.3.2"
+  }
 }

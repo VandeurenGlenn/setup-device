@@ -1,29 +1,40 @@
 'use strict';
-import {writeFile} from 'fs';
+import { join } from 'path';
+import { writeFile, readFile } from 'fs';
+import { promisify } from 'util';
+import { homedir } from 'os';
+import uuid from 'uuid/v4'
 
-(() => {
-  const configFile = () => {
-    const uid = () => {
-      return Math.random().toString(36).slice(-16);
-    };
-    
-    const config = {
-      lanes: [
-        "0x03",
-        "0x04",
-        "0x05"
-      ],
-      model: "prototype-a",
+const write = promisify(writeFile);
+const read = promisify(readFile);
+
+export default async (path = 'org.leofcoin.homecontrol.json', config = {}) => {
+  path = join(homedir(), path);
+
+  const init = async () => {
+    const _config = {
+      model: 'prototype-a',
       serial: Date.now(),
-      uid : `${uid()}-${uid()}`
+      uid : uuid()
     };
-    
-    writeFile('./../org.reeflight.config.json', JSON.stringify(config, null, 2), err => {
-      return err;
-    });
+
+    config = JSON.stringify({ ..._config, ...config }, null, 2);
+    await write(path, config);
+    return 0;
   };
-  
-  return configFile();
 
-})();
-
+  try {
+    await read(path);
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      try {
+        await init();
+        return 0;
+      } catch (error) {
+        throw error;
+      }
+    } else {
+      throw error;
+    }
+  }
+};

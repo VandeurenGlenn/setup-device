@@ -1,5 +1,5 @@
-var reeflightSetup = require('./../dist/index-node.js');
+var s = require('./../index.js');
 
-if (reeflightSetup === null ) {
+if (s() === null ) {
   return 0;
 }

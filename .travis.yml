@@ -1,10 +1,6 @@
-sudo: required
 dist: trust
 language: node_js
 node_js:
   - "0.10"
 cache:
   - "node_modules"
-before_script:
-  - "nvm install 7"
-  - "nvm use 7"
