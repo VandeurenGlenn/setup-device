@@ -3,7 +3,7 @@ import { join } from 'path';
 import { writeFile, readFile } from 'fs';
 import { promisify } from 'util';
 import { homedir } from 'os';
-import uuid from 'uuid/v4'
+import uuid from 'uuid/v4';
 
 const write = promisify(writeFile);
 const read = promisify(readFile);
@@ -20,16 +20,18 @@ export default async (path = 'org.leofcoin.homecontrol.json', config = {}) => {
 
     config = JSON.stringify({ ..._config, ...config }, null, 2);
     await write(path, config);
-    return 0;
+    return config;
   };
 
+  let data;
+
   try {
-    await read(path);
+    data = await read(path);
+    return JSON.parse(data.toString());
   } catch (error) {
     if (error.code === 'ENOENT') {
       try {
-        await init();
-        return 0;
+        data = await init();
       } catch (error) {
         throw error;
       }
@@ -37,4 +39,5 @@ export default async (path = 'org.leofcoin.homecontrol.json', config = {}) => {
       throw error;
     }
   }
+  return data;
 };

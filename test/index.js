@@ -1,5 +1,5 @@
 var s = require('./../index.js');
 
-if (s() === null ) {
-  return 0;
-}
+s().then(config => {
+  console.log(config);
+})

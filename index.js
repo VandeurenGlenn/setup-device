@@ -23,16 +23,18 @@ var index = async (path$1 = 'org.leofcoin.homecontrol.json', config = {}) => {
 
     config = JSON.stringify({ ..._config, ...config }, null, 2);
     await write(path$1, config);
-    return 0;
+    return config;
   };
 
+  let data;
+
   try {
-    await read(path$1);
+    data = await read(path$1);
+    return JSON.parse(data.toString());
   } catch (error) {
     if (error.code === 'ENOENT') {
       try {
-        await init();
-        return 0;
+        data = await init();
       } catch (error) {
         throw error;
       }
@@ -40,6 +42,7 @@ var index = async (path$1 = 'org.leofcoin.homecontrol.json', config = {}) => {
       throw error;
     }
   }
+  return data;
 };
 
 module.exports = index;
